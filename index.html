@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yarra Valley · August 2026 · Our Farmstay Adventure</title>
+<title>YOUR HEAD · Australia Trip · Aug 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
 
@@ -212,76 +212,97 @@ nav {
 }
 
 /* ═══════════════════════════════════
-   HERO
+   HERO — PHOTO HEADER
 ═══════════════════════════════════ */
 .hero {
   padding: 0;
-  min-height: 85vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  overflow: hidden;
   position: relative;
+  overflow: hidden;
+  min-height: 88vh;
+  display: flex;
+  align-items: flex-end;
 }
 
-.hero::after {
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  background: #1C0A14;
+}
+
+.hero-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* gradient overlays for text legibility */
+.hero-photo::after {
   content: '';
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 50% 70% at 0% 50%, rgba(107,29,61,0.04) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 60% at 100% 100%, rgba(196,150,74,0.05) 0%, transparent 50%);
-  pointer-events: none;
+    linear-gradient(180deg,
+      rgba(20, 5, 15, 0.55) 0%,
+      transparent 30%,
+      transparent 55%,
+      rgba(15, 4, 12, 0.75) 100%);
 }
 
 .hero-content {
-  padding: 80px 60px 80px 40px;
   position: relative;
-  z-index: 1;
+  z-index: 2;
+  width: 100%;
+  padding: 0 60px 60px;
+  text-align: center;
 }
 
-.hero-content .eyebrow { margin-bottom: 16px; }
+.hero-group-name {
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  opacity: 0.85;
+  margin-bottom: 12px;
+}
 
 .hero-title {
   font-family: var(--font-display);
-  font-size: clamp(48px, 6vw, 80px);
+  font-size: clamp(42px, 7vw, 96px);
   font-weight: 900;
-  color: var(--burgundy);
-  line-height: 0.95;
-  margin-bottom: 6px;
+  color: #fff;
+  line-height: 0.9;
   letter-spacing: -0.02em;
+  margin-bottom: 8px;
+  text-shadow: 0 4px 32px rgba(0,0,0,0.5);
 }
 
 .hero-title em {
   display: block;
   font-style: italic;
   font-weight: 400;
-  color: var(--wine-light);
-  font-size: 0.7em;
+  color: var(--gold-light);
+  font-size: 0.52em;
+  letter-spacing: 0.06em;
+  margin-top: 6px;
 }
 
 .hero-rule {
-  width: 80px;
-  height: 2px;
-  background: linear-gradient(90deg, var(--gold), transparent);
-  margin: 24px 0;
-}
-
-.hero-desc {
-  font-family: var(--font-body);
-  font-style: italic;
-  font-size: 17px;
-  color: var(--brown);
-  line-height: 1.6;
-  margin-bottom: 32px;
-  max-width: 400px;
+  width: 60px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 20px auto;
 }
 
 .hero-pills {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 36px;
+  justify-content: center;
+  margin-bottom: 0;
 }
 
 .pill {
@@ -296,73 +317,121 @@ nav {
 }
 
 .pill-primary {
-  background: var(--burgundy);
+  background: rgba(107,29,61,0.85);
+  backdrop-filter: blur(8px);
   color: var(--cream);
+  border: 1px solid rgba(196,150,74,0.3);
 }
 
 .pill-outline {
-  border: 1.5px solid var(--rose);
-  color: var(--wine);
-  background: transparent;
+  border: 1.5px solid rgba(253,246,227,0.3);
+  color: rgba(253,246,227,0.85);
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(8px);
 }
 
 .pill-gold {
-  background: var(--cream-warm);
+  background: rgba(196,150,74,0.2);
   border: 1.5px solid var(--gold);
-  color: var(--gold);
+  color: var(--gold-light);
+  backdrop-filter: blur(8px);
 }
 
-.hero-scroll {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-family: var(--font-ui);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--rose);
-  opacity: 0.7;
+@media (max-width: 640px) {
+  .hero-content { padding: 0 24px 44px; }
+  .hero-title { font-size: clamp(36px, 10vw, 64px); }
 }
 
-.hero-scroll::before {
-  content: '';
-  display: block;
-  width: 24px;
-  height: 1px;
-  background: var(--rose);
+/* ═══════════════════════════════════
+   CREW SECTION
+═══════════════════════════════════ */
+.crew {
+  background: var(--dark);
+  padding: 72px 0 64px;
 }
 
-/* Hero illustration */
-.hero-visual {
-  height: 100%;
-  min-height: 85vh;
+.crew .section-title { color: var(--cream); }
+.crew .section-title em { color: var(--gold-light); }
+.crew .section-subtitle { color: rgba(253,246,227,0.5); }
+.crew .eyebrow { color: var(--gold); }
+
+.crew-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 44px;
+}
+
+.crew-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(253,246,227,0.09);
+  border-radius: var(--radius-md);
+  padding: 24px 18px 20px;
+  text-align: center;
+  transition: background 0.2s, transform 0.2s;
   position: relative;
+  overflow: hidden;
 }
 
-.hero-visual .illus {
-  height: 100%;
-  border-radius: 0;
+.crew-card:hover {
+  background: rgba(255,255,255,0.08);
+  transform: translateY(-3px);
 }
 
-.hero-visual .illus::after {
+.crew-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 80px;
-  background: linear-gradient(90deg, var(--cream), transparent);
+  top: 0; left: 0; right: 0;
+  height: 2px;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-  .hero-content { padding: 60px 28px 40px; }
-  .hero-visual { height: 320px; min-height: unset; }
-  .hero-visual .illus { border-radius: 0; }
+.crew-card.adult::before  { background: linear-gradient(90deg, var(--wine), var(--gold)); }
+.crew-card.kid::before    { background: linear-gradient(90deg, var(--gold), #FFD93D); }
+
+.crew-emoji {
+  font-size: 36px;
+  margin-bottom: 10px;
+  line-height: 1;
+}
+
+.crew-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--cream);
+  margin-bottom: 4px;
+}
+
+.crew-role {
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  opacity: 0.8;
+  margin-bottom: 8px;
+}
+
+.crew-bio {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 12px;
+  color: rgba(253,246,227,0.55);
+  line-height: 1.55;
+}
+
+.crew-family-tag {
+  display: inline-block;
+  margin-top: 10px;
+  background: rgba(196,150,74,0.15);
+  border: 1px solid rgba(196,150,74,0.25);
+  color: var(--gold-light);
+  padding: 2px 9px;
+  border-radius: 100px;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  opacity: 0.8;
 }
 
 /* ═══════════════════════════════════
@@ -1187,9 +1256,10 @@ footer::before {
 <nav>
   <div class="nav-inner">
     <div class="nav-logo">
-      Yarra Valley <span>Aug 2026</span>
+      YOUR HEAD <span>Australia '26</span>
     </div>
     <ul class="nav-links">
+      <li><a href="#crew">The Crew</a></li>
       <li><a href="#stay">Stay</a></li>
       <li><a href="#itinerary">Itinerary</a></li>
       <li><a href="#food">Eat &amp; Drink</a></li>
@@ -1199,33 +1269,24 @@ footer::before {
 </nav>
 
 <!-- ════════════════════════════════
-     HERO
+     HERO — GROUP PHOTO HEADER
 ════════════════════════════════ -->
-<section class="hero">
-  <div class="hero-content container" style="max-width:none;">
-    <div class="eyebrow">Our Winter Farmstay</div>
-    <h1 class="hero-title">
-      Yarra
-      <em>Valley</em>
-    </h1>
-    <div class="hero-rule"></div>
-    <p class="hero-desc">
-      Four nights in the rolling hills of Victoria — farm animals, cellar doors,
-      a snow day, and dinners that stretch past midnight.
-    </p>
-    <div class="hero-pills">
-      <span class="pill pill-primary">🗓 2–6 August 2026</span>
-      <span class="pill pill-outline">👨‍👩‍👧 5 Adults · 3 Kids</span>
-      <span class="pill pill-gold">4 Nights · Full House</span>
-    </div>
-    <div class="hero-scroll">Scroll to explore</div>
+<section class="hero" id="home">
+  <div class="hero-photo">
+    <img src="images/header-composite.jpg" alt="YOUR HEAD — the crew in Yarra Valley">
   </div>
 
-  <div class="hero-visual">
-    <!-- ILLUSTRATION 01: Yarra Valley golden-hour landscape, rolling vineyard hills at dusk -->
-    <div class="illus" style="height:100%; border-radius:0;">
-      <img src="images/illus-01-hero.png" alt="Yarra Valley landscape" onerror="this.style.display='none'">
-      <span class="illus-label">illus-01 · hero landscape</span>
+  <div class="hero-content">
+    <div class="hero-group-name">✈ Your Head</div>
+    <h1 class="hero-title">
+      YOUR HEAD
+      <em>Australia Trip '26</em>
+    </h1>
+    <div class="hero-rule"></div>
+    <div class="hero-pills">
+      <span class="pill pill-primary">🗓 29 Jul – 6 Aug 2026</span>
+      <span class="pill pill-outline">👨‍👩‍👧 5 Adults · 3 Kids</span>
+      <span class="pill pill-gold">🍷 Yarra Valley Farmstay</span>
     </div>
   </div>
 </section>
@@ -1260,6 +1321,87 @@ footer::before {
     </div>
   </div>
 </div>
+
+<!-- ════════════════════════════════
+     THE CREW
+════════════════════════════════ -->
+<section class="crew" id="crew">
+  <div class="container">
+    <div class="section-header">
+      <div class="eyebrow" style="margin-bottom:10px;">The Gang's All Here</div>
+      <h2 class="section-title">Meet <em>The Crew</em></h2>
+      <p class="section-subtitle">8 people. 3 kids. Zero chill. Maximum fun.</p>
+    </div>
+
+    <div class="crew-grid">
+
+      <div class="crew-card adult">
+        <div class="crew-emoji">🧔🏻</div>
+        <div class="crew-name">Eevann</div>
+        <div class="crew-role">Associate Director of Doing Nothing</div>
+        <p class="crew-bio">Somehow has a job title. Mostly plans trips and delegates the actual work.</p>
+        <span class="crew-family-tag">👨‍👩‍👧 Seah Family · Dad</span>
+      </div>
+
+      <div class="crew-card adult">
+        <div class="crew-emoji">👩🏻</div>
+        <div class="crew-name">Yuwen</div>
+        <div class="crew-role">Ex-HR Professional · Currently Unemployed</div>
+        <p class="crew-bio">Used to manage people for a living. Now manages one toddler. Same difficulty level.</p>
+        <span class="crew-family-tag">👨‍👩‍👧 Seah Family · Mom</span>
+      </div>
+
+      <div class="crew-card kid">
+        <div class="crew-emoji">👧🏻</div>
+        <div class="crew-name">Emma Seah</div>
+        <div class="crew-role">3 Years Old · Social Butterfly</div>
+        <p class="crew-bio">BFF of Jophiel (she thinks). Will eat all your snacks without asking. No regrets.</p>
+        <span class="crew-family-tag">🌟 Seah Family · Kid</span>
+      </div>
+
+      <div class="crew-card adult">
+        <div class="crew-emoji">🏐</div>
+        <div class="crew-name">Joshua Ang</div>
+        <div class="crew-role">Volleyball Professional · Coffee Expert</div>
+        <p class="crew-bio">Takes both coffee and volleyball extremely seriously. Will also quietly finish the wine.</p>
+        <span class="crew-family-tag">👨‍👩‍👧‍👦 Ang Family · Dad</span>
+      </div>
+
+      <div class="crew-card adult">
+        <div class="crew-emoji">🥂</div>
+        <div class="crew-name">Jorena Tan</div>
+        <div class="crew-role">Thinks She's a Volleyball Pro</div>
+        <p class="crew-bio">Loves Josh's coffee. Drunk after one glass but insists she's fine. Colleague of Eevann's — he has receipts.</p>
+        <span class="crew-family-tag">👨‍👩‍👧‍👦 Ang Family · Mom</span>
+      </div>
+
+      <div class="crew-card kid">
+        <div class="crew-emoji">👧🏻</div>
+        <div class="crew-name">Jophiel Ang</div>
+        <div class="crew-role">5 Years Old · Head of Social Affairs</div>
+        <p class="crew-bio">Loves playing with Emma. Organized enough to have a god-dad. Basically runs the show.</p>
+        <span class="crew-family-tag">🌟 Ang Family · Kid</span>
+      </div>
+
+      <div class="crew-card kid">
+        <div class="crew-emoji">👦🏻</div>
+        <div class="crew-name">Joash Ang</div>
+        <div class="crew-role">2 Years Old · Uncle Den Den Stan</div>
+        <p class="crew-bio">Only has eyes for Densil. Will follow him everywhere. Densil is his whole personality.</p>
+        <span class="crew-family-tag">🌟 Ang Family · Kid</span>
+      </div>
+
+      <div class="crew-card adult">
+        <div class="crew-emoji">🏍️</div>
+        <div class="crew-name">Densil Tan</div>
+        <div class="crew-role">Moto Enthusiast · God-dad</div>
+        <p class="crew-bio">Rides motorbikes for fun. God-father to Jophiel. Joash's favourite human. The cool uncle energy is very strong.</p>
+        <span class="crew-family-tag">🤙 The Free Agent</span>
+      </div>
+
+    </div>
+  </div>
+</section>
 
 <!-- ════════════════════════════════
      FLIGHTS
@@ -1809,7 +1951,7 @@ footer::before {
   <div class="footer-title">See you in the valley 🍷</div>
   <div class="footer-dates">2–6 August 2026 · Yarra Valley · Victoria, Australia</div>
   <div class="footer-rule"></div>
-  <div class="footer-note">Made with love (and a lot of wine research) by Eevann · 2026</div>
+  <div class="footer-note">Made with love (and a lot of wine research) by Eevann, for YOUR HEAD · 2026</div>
 </footer>
 
 </body>
