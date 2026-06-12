@@ -1245,6 +1245,49 @@ footer::before {
 .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
 .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
 .hero-content > *:nth-child(5) { animation-delay: 0.5s; }
+
+/* ─── PHASE DIVIDER ─── */
+.phase-divider { display:flex; align-items:center; gap:16px; margin-bottom:36px; }
+.phase-divider-badge { background:var(--burgundy); color:white; font-family:var(--font-ui); font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:7px 20px; border-radius:40px; white-space:nowrap; }
+.phase-divider-line { flex:1; height:1px; background:var(--rose); }
+
+/* ─── CONFIRMED STAY CARD ─── */
+.confirmed-card { background:white; border-radius:var(--radius-lg); border:1.5px solid var(--rose-light); box-shadow:0 6px 24px rgba(107,29,61,0.08); overflow:hidden; margin-bottom:48px; }
+.confirmed-card-head { background:linear-gradient(135deg,var(--burgundy) 0%,var(--wine) 100%); color:white; padding:20px 28px; display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+.confirmed-card-head h3 { font-family:var(--font-display); font-size:20px; font-style:italic; }
+.conf-badge { background:rgba(255,255,255,0.2); border:1px solid rgba(255,255,255,0.4); border-radius:20px; padding:4px 14px; font-family:var(--font-ui); font-size:11px; font-weight:600; letter-spacing:0.08em; text-transform:uppercase; white-space:nowrap; }
+.confirmed-card-body { display:grid; grid-template-columns:1.1fr 1fr; }
+.confirmed-photos { display:grid; grid-template-columns:1fr 1fr; gap:3px; }
+.confirmed-photos img { width:100%; height:180px; object-fit:cover; display:block; }
+.confirmed-photos img.photo-wide { grid-column:1/3; height:230px; }
+.conf-ph { display:flex; align-items:center; justify-content:center; height:180px; text-align:center; }
+.conf-ph.wide { grid-column:1/3; height:230px; }
+.confirmed-detail { padding:28px; display:flex; flex-direction:column; gap:14px; overflow:auto; }
+.conf-address { font-family:var(--font-ui); font-size:13px; color:var(--brown); line-height:1.6; display:flex; gap:8px; }
+.conf-specs { display:flex; flex-wrap:wrap; gap:8px; }
+.conf-spec { background:var(--cream-mid); border-radius:20px; padding:5px 12px; font-family:var(--font-ui); font-size:12px; }
+.conf-price { font-family:var(--font-display); font-size:24px; font-style:italic; color:var(--burgundy); line-height:1.2; }
+.conf-price span { font-family:var(--font-ui); font-size:13px; color:var(--brown); font-style:normal; display:block; margin-top:2px; }
+.conf-rating { font-family:var(--font-ui); font-size:14px; }
+.map-embed { border-radius:var(--radius-md); overflow:hidden; border:1.5px solid var(--rose-light); flex:1; }
+.map-embed iframe { width:100%; height:190px; border:none; display:block; }
+@media(max-width:900px) { .confirmed-card-body { grid-template-columns:1fr; } }
+
+/* ─── MELBOURNE DAY GRID ─── */
+.melb-days { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:36px; }
+.melb-day { background:white; border-radius:var(--radius-md); border:1.5px solid var(--rose-light); overflow:hidden; box-shadow:0 2px 8px rgba(107,29,61,0.05); display:flex; flex-direction:column; }
+.melb-day-head { padding:18px 18px 14px; color:white; }
+.melb-day-head .d-label { font-family:var(--font-ui); font-size:10px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; opacity:0.8; }
+.melb-day-head .d-name { font-family:var(--font-display); font-size:17px; font-style:italic; margin-top:4px; }
+.melb-day-head .d-date { font-family:var(--font-ui); font-size:11px; opacity:0.7; margin-top:4px; }
+.melb-day-icon { height:90px; display:flex; align-items:center; justify-content:center; font-size:44px; }
+.melb-day-body { padding:16px 18px 18px; flex:1; }
+.melb-day-body ul { list-style:none; display:flex; flex-direction:column; gap:8px; }
+.melb-day-body li { font-family:var(--font-ui); font-size:13px; color:var(--dark); padding-left:16px; position:relative; line-height:1.45; }
+.melb-day-body li::before { content:'→'; position:absolute; left:0; color:var(--burgundy); font-size:11px; top:1px; }
+.melb-day-tip { background:var(--cream-mid); border-radius:6px; padding:8px 10px; font-family:var(--font-ui); font-size:12px; color:var(--brown); font-style:italic; margin-top:8px; }
+@media(max-width:920px) { .melb-days { grid-template-columns:repeat(2,1fr); } }
+@media(max-width:580px) { .melb-days { grid-template-columns:1fr; } }
 </style>
 </head>
 
@@ -1260,8 +1303,8 @@ footer::before {
     </div>
     <ul class="nav-links">
       <li><a href="#crew">The Crew</a></li>
-      <li><a href="#stay">Stay</a></li>
-      <li><a href="#itinerary">Itinerary</a></li>
+      <li><a href="#melbourne">Melbourne</a></li>
+      <li><a href="#stay">Yarra Valley</a></li>
       <li><a href="#food">Eat &amp; Drink</a></li>
       <li><a href="#ntk">Good to Know</a></li>
     </ul>
@@ -1286,7 +1329,7 @@ footer::before {
     <div class="hero-pills">
       <span class="pill pill-primary">🗓 28 Jul – 6 Aug 2026</span>
       <span class="pill pill-outline">👨‍👩‍👧 5 Adults · 3 Kids</span>
-      <span class="pill pill-gold">🍷 Yarra Valley Farmstay</span>
+      <span class="pill pill-gold">🌆 Melbourne + Yarra Valley</span>
     </div>
   </div>
 </section>
@@ -1535,138 +1578,139 @@ footer::before {
 </section>
 
 <!-- ════════════════════════════════
-     STAY
+     MELBOURNE — CITY BASE
 ════════════════════════════════ -->
-<section class="stay" id="stay">
+<section class="stay" id="melbourne" style="background:var(--cream-mid);">
   <div class="container">
 
+    <div class="phase-divider">
+      <div class="phase-divider-badge">🌆 Part 1 · Melbourne · 28 Jul – 1 Aug</div>
+      <div class="phase-divider-line"></div>
+    </div>
+
     <div class="section-header">
-      <div class="eyebrow" style="margin-bottom:10px;">Accommodation</div>
-      <h2 class="section-title">Where We're <em>Sleeping</em></h2>
-      <p class="section-subtitle">Full houses only — 4 nights, self-catering, room for all 8 of us</p>
+      <div class="eyebrow" style="margin-bottom:10px;">City Base · 5 Nights</div>
+      <h2 class="section-title">Melbourne <em>Stay</em></h2>
+      <p class="section-subtitle">Landing in style — Southbank apartment right in the heart of it all</p>
     </div>
 
-    <!-- TOP PICK -->
-    <div class="top-pick-wrapper">
-      <div class="top-pick-badge">⭐ Top Pick</div>
-      <div class="top-pick-card">
-        <div class="top-pick-visual">
-          <!-- ILLUSTRATION 02: Luxury Australian farmhouse on rolling hills, dawn light, cows grazing, wraparound veranda -->
-          <div class="illus" style="height:100%; min-height:320px; border-radius:0;">
-            <img src="images/illus-02-yarradene.png" alt="Yarradene Farmstay" onerror="this.style.display='none'">
-            <span class="illus-label">illus-02 · Yarradene farmhouse</span>
-          </div>
+    <!-- Melbourne Confirmed Stay -->
+    <div class="confirmed-card">
+      <div class="confirmed-card-head">
+        <h3>Anki — Huge 3BR / 2BA Apartment, Southbank</h3>
+        <span class="conf-badge">✓ Confirmed</span>
+      </div>
+      <div class="confirmed-card-body">
+        <div class="confirmed-photos">
+          <img class="photo-wide" src="images/melb-apt-main.jpg" alt="Melbourne apartment interior">
+          <img src="images/melb-apt-view.jpg" alt="City view from apartment">
+          <img src="images/melb-apt-bed.jpg" alt="Apartment bedroom">
         </div>
-        <div class="top-pick-content">
-          <div class="stay-card-rank">01</div>
-          <div class="stay-card-name">Yarradene Luxury Farmstay</div>
-          <div class="stay-card-location">📍 Near Healesville · 48 acres</div>
-          <div class="stay-specs">
-            <span class="spec-chip">🛏 4 bed</span>
-            <span class="spec-chip">🚿 3 bath</span>
-            <span class="spec-chip">👥 8 pax</span>
-            <span class="spec-chip">🐄 Farm animals</span>
+        <div class="confirmed-detail">
+          <div class="conf-address">
+            📍
+            <div>
+              Apartment 121, Level 12<br>
+              173 City Road, Southbank VIC 3006<br>
+              <span style="color:var(--sage); font-weight:500;">~22 min from airport · Southbank Arts Precinct</span>
+            </div>
           </div>
-          <p class="stay-desc">
-            Cows, donkeys, and 48 acres of space — this is the one. Luxury finishes,
-            genuine farmstay feel. The kids will lose their minds. The adults won't want to leave.
-          </p>
-          <div class="stay-price">~S$850 <span style="font-size:14px; font-weight:400; color:var(--brown);">/night</span></div>
-          <div class="stay-price-note">≈ S$3,400 for 4 nights · ~S$680/adult couple · A$975/night</div>
-          <a class="stay-link" href="https://airbnb.com.au/rooms/1104555010829342054" target="_blank" rel="noopener">
-            View on Airbnb →
-          </a>
+          <div class="conf-specs">
+            <span class="conf-spec">🛏 3 bed</span>
+            <span class="conf-spec">🚿 2 bath</span>
+            <span class="conf-spec">🛌 5 beds</span>
+            <span class="conf-spec">👥 8 guests</span>
+            <span class="conf-spec">🗓 28 Jul – 2 Aug</span>
+            <span class="conf-spec">5 nights</span>
+          </div>
+          <div class="conf-price">~S$332 <span>/night · ~S$1,660 total</span></div>
+          <a class="stay-link" href="https://www.airbnb.com.au/rooms/1656016952258056927" target="_blank" rel="noopener">View on Airbnb →</a>
+          <div class="map-embed">
+            <iframe src="https://maps.google.com/maps?q=173+City+Road+Southbank+VIC+3006+Australia&output=embed" loading="lazy" title="Melbourne apartment location"></iframe>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- OTHER OPTIONS -->
-    <div class="other-stays-title">Other Options We're Considering</div>
-    <div class="other-stays-grid">
+    <!-- Melbourne Itinerary -->
+    <div class="section-header" style="margin-bottom:8px;">
+      <div class="eyebrow" style="margin-bottom:8px;">Day by Day</div>
+      <h3 class="section-title" style="font-size:28px;">Melbourne <em>Itinerary</em></h3>
+      <p class="section-subtitle">4 big days in the city before we hit the valley</p>
+    </div>
 
-      <div class="stay-mini-card">
-        <div class="stay-mini-visual">
-          <!-- ILLUSTRATION 03: Quaint country farmhouse with vineyard views, morning mist, warm windows -->
-          <div class="illus" style="height:140px; border-radius:0;">
-            <img src="images/illus-03-dixiglen.png" alt="Dixiglen Farm" onerror="this.style.display='none'">
-            <span class="illus-label">illus-03</span>
-          </div>
+    <div class="melb-days">
+
+      <!-- Wed 29 Jul -->
+      <div class="melb-day">
+        <div class="melb-day-head" style="background:linear-gradient(135deg,var(--burgundy) 0%,var(--wine-light) 100%);">
+          <div class="d-label">Day 1 · Wednesday</div>
+          <div class="d-name">Arrival Day</div>
+          <div class="d-date">29 July 2026</div>
         </div>
-        <div class="stay-mini-body">
-          <div class="stay-mini-rank">#2 Pick</div>
-          <div class="stay-mini-name">Dixiglen Farm</div>
-          <div class="stay-mini-location">📍 Dixons Creek · Walk to wineries</div>
-          <div class="stay-mini-price">~S$610/night</div>
-          <div class="stay-mini-specs">
-            <span class="mini-spec">4 bed</span>
-            <span class="mini-spec">4 bath</span>
-            <span class="mini-spec">8 pax</span>
-          </div>
-          <div class="stay-mini-note">Breakfast included ✨</div>
+        <div class="melb-day-icon" style="background:linear-gradient(135deg,#e8f4e8 0%,#d4ead4 100%);">✈️</div>
+        <div class="melb-day-body">
+          <ul>
+            <li>Land at <strong>6:15 am</strong> · 22-min ride to Southbank</li>
+            <li>Check in · rest up</li>
+            <li>Lunch / Brunch in Southbank</li>
+            <li><strong>Melbourne Museum</strong> + Children's Gallery</li>
+            <li>Early night in</li>
+          </ul>
         </div>
       </div>
 
-      <div class="stay-mini-card">
-        <div class="stay-mini-visual">
-          <!-- ILLUSTRATION 04: Cozy stone house interior, private bar, fireplace glowing, warm amber light -->
-          <div class="illus" style="height:140px; border-radius:0;">
-            <img src="images/illus-04-killawarra.png" alt="Killawarra House" onerror="this.style.display='none'">
-            <span class="illus-label">illus-04</span>
-          </div>
+      <!-- Thu 30 Jul -->
+      <div class="melb-day">
+        <div class="melb-day-head" style="background:linear-gradient(135deg,#3d2010 0%,#6b3820 100%);">
+          <div class="d-label">Day 2 · Thursday</div>
+          <div class="d-name">Puffing Billy Day</div>
+          <div class="d-date">30 July 2026</div>
         </div>
-        <div class="stay-mini-body">
-          <div class="stay-mini-rank">#3 Pick</div>
-          <div class="stay-mini-name">Killawarra House</div>
-          <div class="stay-mini-location">📍 Healesville</div>
-          <div class="stay-mini-price">~S$425/night</div>
-          <div class="stay-mini-specs">
-            <span class="mini-spec">5 bed</span>
-            <span class="mini-spec">2 bath</span>
-            <span class="mini-spec">10 pax</span>
-          </div>
-          <div class="stay-mini-note">Private bar 🍷</div>
+        <div class="melb-day-icon" style="background:linear-gradient(135deg,#f0e8d8 0%,#e8d8c0 100%);">🚂</div>
+        <div class="melb-day-body">
+          <ul>
+            <li><strong>Puffing Billy</strong> + Phillip Island Wildlife Tour</li>
+            <li>10:30 am – 10:30 pm</li>
+          </ul>
+          <div class="melb-day-tip">🐧 OR: Half-day Puffing Billy only (transport included)</div>
         </div>
       </div>
 
-      <div class="stay-mini-card">
-        <div class="stay-mini-visual">
-          <!-- ILLUSTRATION 05: Stylish mid-century modern house surrounded by native Australian garden, warm afternoon -->
-          <div class="illus" style="height:140px; border-radius:0;">
-            <img src="images/illus-05-sibbel.png" alt="Sibbel House" onerror="this.style.display='none'">
-            <span class="illus-label">illus-05</span>
-          </div>
+      <!-- Fri 31 Jul -->
+      <div class="melb-day">
+        <div class="melb-day-head" style="background:linear-gradient(135deg,#1a4a2a 0%,#2d7a46 100%);">
+          <div class="d-label">Day 3 · Friday</div>
+          <div class="d-name">Market &amp; Lego</div>
+          <div class="d-date">31 July 2026</div>
         </div>
-        <div class="stay-mini-body">
-          <div class="stay-mini-rank">#4 Pick</div>
-          <div class="stay-mini-name">Sibbel House</div>
-          <div class="stay-mini-location">📍 Near Healesville town</div>
-          <div class="stay-mini-price">~S$465/night</div>
-          <div class="stay-mini-specs">
-            <span class="mini-spec">4 bed</span>
-            <span class="mini-spec">8 pax</span>
-          </div>
-          <div class="stay-mini-note">Stylish mid-century vibes 🪴</div>
+        <div class="melb-day-icon" style="background:linear-gradient(135deg,#fff3e0 0%,#ffe0b2 100%);">🧱</div>
+        <div class="melb-day-body">
+          <ul>
+            <li><strong>Queen Victoria Market</strong></li>
+            <li><strong>LEGOLAND Discovery Centre</strong> (10am–5pm)</li>
+            <li>Brighton Beach — colourful bathing boxes</li>
+            <li>Dinner at Brighton Beach</li>
+          </ul>
+          <div class="melb-day-tip">⚠️ Heavy travel day — pace yourselves</div>
         </div>
       </div>
 
-      <div class="stay-mini-card">
-        <div class="stay-mini-visual">
-          <!-- ILLUSTRATION 06: Fluffy alpacas and tiny mini horses looking over a cottage fence, curious faces -->
-          <div class="illus" style="height:140px; border-radius:0;">
-            <img src="images/illus-06-olinda.png" alt="Olinda Farm Cottage" onerror="this.style.display='none'">
-            <span class="illus-label">illus-06</span>
-          </div>
+      <!-- Sat 1 Aug -->
+      <div class="melb-day">
+        <div class="melb-day-head" style="background:linear-gradient(135deg,#1a3d1a 0%,#2d6b2d 100%);">
+          <div class="d-label">Day 4 · Saturday</div>
+          <div class="d-name">Werribee Zoo</div>
+          <div class="d-date">1 August 2026</div>
         </div>
-        <div class="stay-mini-body">
-          <div class="stay-mini-rank">#5 · Verify Capacity</div>
-          <div class="stay-mini-name">Olinda Farm Cottage</div>
-          <div class="stay-mini-location">📍 Yering</div>
-          <div class="stay-mini-price">~S$330/night</div>
-          <div class="stay-mini-specs">
-            <span class="mini-spec">Alpacas</span>
-            <span class="mini-spec">Mini horses</span>
-          </div>
-          <div class="stay-mini-note" style="color:var(--wine);">⚠️ Verify 8-pax capacity before booking</div>
+        <div class="melb-day-icon" style="background:linear-gradient(135deg,#e8f5e8 0%,#c8e8c8 100%);">🦒</div>
+        <div class="melb-day-body">
+          <ul>
+            <li>Pick up rental car 🚗</li>
+            <li><strong>Werribee Open Range Zoo</strong></li>
+            <li>Wyndham Park Playground</li>
+          </ul>
+          <div class="melb-day-tip">→ Tomorrow: drive to Yarra Valley!</div>
         </div>
       </div>
 
@@ -1675,108 +1719,141 @@ footer::before {
 </section>
 
 <!-- ════════════════════════════════
-     ITINERARY
+     STAY — YARRA VALLEY
 ════════════════════════════════ -->
-<section class="itinerary" id="itinerary">
+<section class="stay" id="stay">
+  <div class="container">
+
+    <div class="phase-divider">
+      <div class="phase-divider-badge">🍷 Part 2 · Yarra Valley · 2–6 Aug</div>
+      <div class="phase-divider-line"></div>
+    </div>
+
+    <div class="section-header">
+      <div class="eyebrow" style="margin-bottom:10px;">Yarra Valley · 4 Nights</div>
+      <h2 class="section-title">Valley <em>Home</em></h2>
+      <p class="section-subtitle">Entire modern home — all 8 of us, vineyards on the doorstep</p>
+    </div>
+
+    <!-- Confirmed Yarra Stay -->
+    <div class="confirmed-card">
+      <div class="confirmed-card-head">
+        <h3>Modern 4BR Home · Lux Touches, Close to Everything</h3>
+        <span class="conf-badge">✓ Confirmed</span>
+      </div>
+      <div class="confirmed-card-body">
+        <div class="confirmed-photos">
+          <div class="conf-ph wide" style="background:linear-gradient(135deg,#f5efe8 0%,#e8d5c4 100%); height:230px; flex-direction:column; gap:10px;">
+            <div style="font-size:52px;">🏡</div>
+            <div style="font-family:var(--font-display); font-size:20px; font-style:italic; color:var(--burgundy);">Modern Luxury Home</div>
+            <div style="font-family:var(--font-ui); font-size:13px; color:var(--brown);">Healesville · Yarra Valley</div>
+          </div>
+          <div class="conf-ph" style="background:linear-gradient(135deg,#ede8f5 0%,#d8d0ea 100%); flex-direction:column; gap:6px;">
+            <div style="font-size:36px;">🛏</div>
+            <div style="font-family:var(--font-ui); font-size:12px; color:var(--brown);">4 Bedrooms · 7 Beds</div>
+          </div>
+          <div class="conf-ph" style="background:linear-gradient(135deg,#e8f5e8 0%,#c8e8c4 100%); flex-direction:column; gap:6px;">
+            <div style="font-size:36px;">⭐</div>
+            <div style="font-family:var(--font-ui); font-size:12px; color:var(--brown);">4.82 · 158 reviews</div>
+          </div>
+        </div>
+        <div class="confirmed-detail">
+          <div class="conf-address">
+            📍
+            <div>
+              14 Oakridge Rise<br>
+              Healesville VIC 3777<br>
+              <span style="color:var(--sage); font-weight:500;">Near Healesville town · Sanctuary &amp; wineries close by</span>
+            </div>
+          </div>
+          <div class="conf-specs">
+            <span class="conf-spec">🛏 4 bed</span>
+            <span class="conf-spec">🛌 7 beds</span>
+            <span class="conf-spec">🚿 2 bath</span>
+            <span class="conf-spec">👥 10 guests</span>
+            <span class="conf-spec">⭐ 4.82</span>
+            <span class="conf-spec">💬 158 reviews</span>
+            <span class="conf-spec">🗓 2 – 6 Aug</span>
+            <span class="conf-spec">4 nights</span>
+          </div>
+          <a class="stay-link" href="https://www.airbnb.com.au/rooms/1045243552741693860" target="_blank" rel="noopener">View on Airbnb →</a>
+          <div class="map-embed">
+            <iframe src="https://maps.google.com/maps?q=14+Oakridge+Rise+Healesville+VIC+3777+Australia&output=embed" loading="lazy" title="Yarra Valley home location"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+     ITINERARY — YARRA VALLEY
+════════════════════════════════ -->
+<section class="itinerary" id="itinerary" style="background:var(--cream-mid);">
   <div class="container">
 
     <div class="section-header">
-      <div class="eyebrow" style="margin-bottom:10px;">Day by Day</div>
-      <h2 class="section-title">The <em>Plan</em></h2>
-      <p class="section-subtitle">60–70% kids-first — and still one of the best trips you'll ever take</p>
+      <div class="eyebrow" style="margin-bottom:10px;">Yarra Valley · Day by Day</div>
+      <h2 class="section-title">Valley <em>Itinerary</em></h2>
+      <p class="section-subtitle">Snow, sanctuary, wine, and a steam train — all in one week</p>
     </div>
     <div class="ornament">✦ ✦ ✦</div>
 
-    <!-- Yarra Valley illustrated map -->
-    <div style="border-radius:var(--radius-lg); overflow:hidden; margin-bottom:44px; border:1.5px solid var(--rose-light); box-shadow:0 4px 16px rgba(107,29,61,0.06);">
-      <img src="images/illus-15-map.png" alt="Yarra Valley illustrated map" style="width:100%; display:block; max-height:320px; object-fit:cover; object-position:center;">
-    </div>
-
     <div class="day-cards">
 
-      <!-- DAY 1 -->
+      <!-- DAY 1 — Sun 2 Aug -->
       <div class="day-card">
         <div class="day-visual">
-          <!-- ILLUSTRATION 07: A big chocolate shop window with truffles, cocoa pods and bonbons, warm golden lighting -->
           <div class="illus" style="height:100%; min-height:260px; border-radius:0;">
-            <img src="images/illus-07-day1-choc.png" alt="Yarra Valley Chocolaterie" onerror="this.style.display='none'">
+            <img src="images/illus-07-day1-choc.png" alt="Diamond Valley Railway + Chocolaterie" onerror="this.style.display='none'">
             <span class="illus-label">illus-07 · day 1</span>
           </div>
         </div>
         <div class="day-content">
           <div class="day-number">Day 1 · Sunday</div>
           <div class="day-date">2 August 2026</div>
-          <h3 class="day-title">Arrive &amp; Settle In</h3>
+          <h3 class="day-title">Train, Chocolate &amp; Check-In</h3>
           <ul class="day-activities">
-            <li>Drive from Melbourne CBD to Yarra Valley (~1 hr)</li>
-            <li><strong>Yarra Valley Chocolaterie</strong> — free entry, free tastings, open 9am–5pm, Yarra Glen</li>
-            <li>Check into the farmstay and explore the property</li>
-            <li>Meet the animals — cows, donkeys, whoever else</li>
-            <li>First proper farm dinner in the kitchen</li>
+            <li><strong>Diamond Valley Railway</strong> — miniature passenger railway, open Sundays 11am–4pm (~1 hr drive)</li>
+            <li>Lunch mid-way en route</li>
+            <li><strong>Yarra Valley Chocolaterie &amp; Ice Creamery</strong> — free entry, free tastings, open 9am–5pm</li>
+            <li>Check into <strong>14 Oakridge Rise</strong> — unpack, explore the house</li>
+            <li>Dinner at home — hot pot night 🍲</li>
           </ul>
           <div class="day-highlight">
-            💡 Free entry + free tastings at the Chocolaterie — perfect first stop to keep the kids happy
+            💡 Diamond Valley Railway runs Sundays only — this is the one day to catch it. Book ahead if possible.
           </div>
           <div class="day-tag-row">
-            <span class="day-tag">🍫 Chocolate</span>
-            <span class="day-tag">🐄 Farm</span>
-            <span class="day-tag">🚗 Drive-in Day</span>
+            <span class="day-tag">🚂 Mini Railway</span>
+            <span class="day-tag">🍫 Chocolaterie</span>
+            <span class="day-tag">🏠 Check In</span>
           </div>
         </div>
       </div>
 
-      <!-- DAY 2 -->
+      <!-- DAY 2 — Mon 3 Aug -->
       <div class="day-card">
         <div class="day-visual">
-          <!-- ILLUSTRATION 08: Kangaroo mother and joey in Australian eucalyptus forest clearing, dappled light -->
           <div class="illus" style="height:100%; min-height:260px; border-radius:0;">
-            <img src="images/illus-08-day2-sanctuary.png" alt="Healesville Sanctuary" onerror="this.style.display='none'">
-            <span class="illus-label">illus-08 · day 2</span>
+            <img src="images/illus-09-day3-snow.png" alt="Lake Mountain snow day" onerror="this.style.display='none'">
+            <span class="illus-label">illus-09 · day 2</span>
           </div>
         </div>
         <div class="day-content">
           <div class="day-number">Day 2 · Monday</div>
           <div class="day-date">3 August 2026</div>
-          <h3 class="day-title">Wildlife &amp; Wine</h3>
-          <ul class="day-activities">
-            <li><strong>Healesville Sanctuary</strong> — full day, native animals, platypus, raptors</li>
-            <li>Kids FREE during school holidays 🎉 — adults ~S$50/pax</li>
-            <li>Dinner at <strong>De Bortoli Winery</strong> — restaurant + kids' playground, Dixons Creek</li>
-          </ul>
-          <div class="day-highlight">
-            💡 School holiday bonus: kids get free entry to Healesville. Book De Bortoli dinner in advance.
-          </div>
-          <div class="day-tag-row">
-            <span class="day-tag">🦘 Wildlife</span>
-            <span class="day-tag">🍷 Winery Dinner</span>
-            <span class="day-tag">Kids FREE</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- DAY 3 -->
-      <div class="day-card">
-        <div class="day-visual">
-          <!-- ILLUSTRATION 09: Children bundled in scarves tobogganing down a snowy white hill, laughter and mittens -->
-          <div class="illus" style="height:100%; min-height:260px; border-radius:0;">
-            <img src="images/illus-09-day3-snow.png" alt="Lake Mountain snow day" onerror="this.style.display='none'">
-            <span class="illus-label">illus-09 · day 3</span>
-          </div>
-        </div>
-        <div class="day-content">
-          <div class="day-number">Day 3 · Tuesday</div>
-          <div class="day-date">4 August 2026</div>
-          <h3 class="day-title">Snow Day 🏔️</h3>
+          <h3 class="day-title">Snow &amp; Waterfalls 🏔️</h3>
           <ul class="day-activities">
             <li><strong>Lake Mountain Alpine Resort</strong> — snow play, tobogganing, snowshoeing, cross-country trails</li>
-            <li><strong>Steavenson Falls</strong> (Marysville) — dramatic waterfall in a fern gully, short walk</li>
-            <li>Warm dinner back at the farm — something hearty on the stove</li>
+            <li><strong>Steavenson Falls</strong> (Marysville) — dramatic waterfall in fern gully, short walk</li>
+            <li>Warm dinner back at the house</li>
           </ul>
           <div style="border-radius:10px; overflow:hidden; margin:12px 0; border:1px solid var(--rose-light);">
             <img src="images/illus-09b-waterfall.png" alt="Steavenson Falls" style="width:100%; height:120px; object-fit:cover; display:block;">
           </div>
           <div class="day-highlight">
-            💡 Pack thermals, waterproofs, gloves, beanies. Toboggan hire available on-site at Lake Mountain.
+            💡 Lake Mountain is closed Tues/Wed — Monday is the day to go. Pack thermals, waterproofs, gloves. Toboggan hire on-site.
           </div>
           <div class="day-tag-row">
             <span class="day-tag">❄️ Snow</span>
@@ -1787,32 +1864,61 @@ footer::before {
         </div>
       </div>
 
-      <!-- DAY 4 -->
+      <!-- DAY 3 — Tue 4 Aug -->
       <div class="day-card">
         <div class="day-visual">
-          <!-- ILLUSTRATION 10: A historic 1800s colonial stone farm with horses and sheep, bright winter sky, golden afternoon -->
           <div class="illus" style="height:100%; min-height:260px; border-radius:0;">
-            <img src="images/illus-10-day4-winery.png" alt="Gulf Station Historic Farm + Winery" onerror="this.style.display='none'">
+            <img src="images/illus-08-day2-sanctuary.png" alt="Healesville Sanctuary" onerror="this.style.display='none'">
+            <span class="illus-label">illus-08 · day 3</span>
+          </div>
+        </div>
+        <div class="day-content">
+          <div class="day-number">Day 3 · Tuesday</div>
+          <div class="day-date">4 August 2026</div>
+          <h3 class="day-title">Wildlife Full Day 🦘</h3>
+          <ul class="day-activities">
+            <li>Find a good brunch spot in Healesville</li>
+            <li><strong>Healesville Sanctuary</strong> — full day, native animals: platypus, koalas, raptors, dingoes, kangaroos</li>
+            <li>Koala Experience · Dingo Experience · Platypus Discovery</li>
+            <li>Kids FREE during school holidays 🎉 — adults ~S$50/pax</li>
+          </ul>
+          <div class="day-highlight">
+            💡 Book Koala / Dingo / Raptor experiences ahead — they sell out fast, especially in school holidays.
+          </div>
+          <div class="day-tag-row">
+            <span class="day-tag">🦘 Wildlife</span>
+            <span class="day-tag">🐨 Koalas</span>
+            <span class="day-tag">🦅 Raptors</span>
+            <span class="day-tag">Kids FREE</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- DAY 4 — Wed 5 Aug -->
+      <div class="day-card">
+        <div class="day-visual">
+          <div class="illus" style="height:100%; min-height:260px; border-radius:0;">
+            <img src="images/illus-10-day4-winery.png" alt="Yarra Valley Wine Tour" onerror="this.style.display='none'">
             <span class="illus-label">illus-10 · day 4</span>
           </div>
         </div>
         <div class="day-content">
           <div class="day-number">Day 4 · Wednesday</div>
           <div class="day-date">5 August 2026</div>
-          <h3 class="day-title">History &amp; Harvest</h3>
+          <h3 class="day-title">Wine Tour Day 🍷</h3>
           <ul class="day-activities">
-            <li><strong>Gulf Station Historic Farm</strong> (Yarra Glen) — 1850s working farm, heritage animals, family-friendly</li>
-            <li>Winery lunch — Innocent Bystander (Healesville) or local cellar door of choice</li>
-            <li>Cellar door wine tasting in the afternoon</li>
-            <li>Last night dinner at the farmstay — make it count</li>
+            <li><strong>Yarra Valley Wine Tour</strong> — guided cellar door circuit through the valley</li>
+            <li>Stops at top wineries: De Bortoli, Chandon, Yering Station, Dominique Portet</li>
+            <li>Lunch at a cellar door restaurant</li>
+            <li>Last evening at the house — make it memorable</li>
           </ul>
           <div class="day-highlight">
-            💡 Gulf Station has real heritage animals and hands-on farm experiences — great for the kids and surprisingly interesting for the adults.
+            💡 Book a guided tour so everyone gets to drink. Chandon does a brilliant sparkling — don't skip it.
           </div>
           <div class="day-tag-row">
-            <span class="day-tag">🏛 Heritage Farm</span>
-            <span class="day-tag">🍷 Cellar Door</span>
-            <span class="day-tag">🍕 Winery Lunch</span>
+            <span class="day-tag">🍷 Wine Tour</span>
+            <span class="day-tag">🥂 Cellar Doors</span>
+            <span class="day-tag">🍽 Winery Lunch</span>
           </div>
         </div>
       </div>
@@ -1820,10 +1926,10 @@ footer::before {
     </div>
 
     <!-- Checkout note -->
-    <div style="text-align:center; margin-top:40px; padding:24px; background:var(--cream-mid); border-radius:var(--radius-md); border:1.5px dashed var(--rose);">
+    <div style="text-align:center; margin-top:40px; padding:24px; background:white; border-radius:var(--radius-md); border:1.5px dashed var(--rose);">
       <div class="eyebrow" style="margin-bottom:6px;">Day 5 · Thursday 6 August</div>
-      <div style="font-family:var(--font-display); font-size:20px; font-style:italic; color:var(--burgundy);">Checkout &amp; Head Home</div>
-      <div class="section-subtitle" style="margin-top:4px;">One last look at the paddocks, one last coffee, then it's back to real life.</div>
+      <div style="font-family:var(--font-display); font-size:20px; font-style:italic; color:var(--burgundy);">Checkout &amp; Drive to Melbourne Airport</div>
+      <div class="section-subtitle" style="margin-top:4px;">One last coffee, one last look at the valley — then JQ7 home at noon. See you on the other side.</div>
     </div>
 
   </div>
