@@ -208,7 +208,11 @@ nav {
 .nav-links a:hover { color: var(--cream); }
 
 @media (max-width: 640px) {
-  .nav-links { display: none; }
+  /* Hide the in-page section anchors on mobile, but keep the Expenses
+     button reachable — it's the only link to a separate page. */
+  .nav-links { gap: 0; }
+  .nav-links li:not(.nav-cta) { display: none; }
+  .nav-links li.nav-cta a { padding: 7px 16px; font-size: 12px; }
 }
 
 /* ═══════════════════════════════════
@@ -1307,7 +1311,7 @@ footer::before {
       <li><a href="#stay">Yarra Valley</a></li>
       <li><a href="#food">Eat &amp; Drink</a></li>
       <li><a href="#ntk">Good to Know</a></li>
-      <li><a href="expenses.html" style="background:rgba(196,150,74,0.2);border:1px solid var(--gold);border-radius:20px;padding:4px 14px;color:var(--gold)!important;">💰 Expenses</a></li>
+      <li class="nav-cta"><a href="expenses.html" style="background:rgba(196,150,74,0.2);border:1px solid var(--gold);border-radius:20px;padding:4px 14px;color:var(--gold)!important;">💰 Expenses</a></li>
     </ul>
   </div>
 </nav>
