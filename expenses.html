@@ -402,16 +402,13 @@ const CATS = [
   { id: 'other',      label: 'Other',      icon: '📦' },
 ];
 
-const LS_EXP  = 'yh_expenses_2026';
-const LS_RATE = 'yh_aud_rate';
-
 // ════════════════════════════════
-// STATE
+// STATE  (shared across all users via the /api backend)
 // splitWith stored as [{name, pax}] — pax: 0.5 or 1
 // splitState: form UI state {name: 0|0.5|1}
 // ════════════════════════════════
-let expenses = JSON.parse(localStorage.getItem(LS_EXP) || '[]').map(migrate);
-let rate     = parseFloat(localStorage.getItem(LS_RATE) || '0.87');
+let expenses = [];
+let rate     = 0.87;
 let splitState = {};
 let deleteId   = null;
 
@@ -442,7 +439,53 @@ function showToast(msg) {
   clearTimeout(t._timer);
   t._timer = setTimeout(() => t.classList.remove('show'), 2600);
 }
-function saveData() { localStorage.setItem(LS_EXP, JSON.stringify(expenses)); }
+// ════════════════════════════════
+// SHARED BACKEND API
+// ════════════════════════════════
+async function apiGetState() {
+  const r = await fetch('/api/state', { cache: 'no-store' });
+  if (!r.ok) throw new Error('state ' + r.status);
+  return r.json();
+}
+async function apiPostExpense(exp) {
+  const r = await fetch('/api/expenses', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(exp),
+  });
+  if (!r.ok) throw new Error('post ' + r.status);
+}
+async function apiDeleteExpense(id) {
+  const r = await fetch('/api/expenses/' + encodeURIComponent(id), { method: 'DELETE' });
+  if (!r.ok) throw new Error('delete ' + r.status);
+}
+async function apiPutRate(v) {
+  const r = await fetch('/api/rate', {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ rate: v }),
+  });
+  if (!r.ok) throw new Error('rate ' + r.status);
+}
+
+// Pull the shared state and re-render. Skipped while a modal is open so
+// background refreshes don't disturb an in-progress edit.
+async function loadState({ silent } = {}) {
+  try {
+    const data = await apiGetState();
+    expenses = (data.expenses || []).map(migrate);
+    rate = data.rate || 0.87;
+    const ri = document.getElementById('rate-input');
+    if (ri && document.activeElement !== ri) ri.value = rate;
+    render();
+  } catch (e) {
+    if (!silent) showToast('Could not reach the server — retrying…');
+  }
+}
+function modalOpen() {
+  return document.getElementById('form-card')?.classList.contains('open') ||
+         document.getElementById('overlay')?.classList.contains('show');
+}
 
 // ════════════════════════════════
 // CALCULATIONS
@@ -755,7 +798,7 @@ function closeForm() { document.getElementById('form-card').classList.remove('op
 // ════════════════════════════════
 // SAVE
 // ════════════════════════════════
-function saveExpense() {
+async function saveExpense() {
   const desc  = document.getElementById('f-desc').value.trim();
   const amt   = parseFloat(document.getElementById('f-amount').value);
   const cur   = document.getElementById('f-currency').value;
@@ -772,6 +815,17 @@ function saveExpense() {
   if (!split.length)    return alert('Please select at least one person to split with.');
 
   const exp = { id: eid || uid(), date, description: desc, category: cat, amount: amt, currency: cur, paidBy: paid, splitWith: split };
+
+  const btn = document.getElementById('btn-save');
+  if (btn) btn.disabled = true;
+  try {
+    await apiPostExpense(exp);
+  } catch (e) {
+    if (btn) btn.disabled = false;
+    return alert('Could not save — check your connection and try again.');
+  }
+  if (btn) btn.disabled = false;
+
   if (eid) {
     const i = expenses.findIndex(e => e.id === eid);
     if (i !== -1) expenses[i] = exp;
@@ -780,7 +834,7 @@ function saveExpense() {
     expenses.unshift(exp);
     showToast('Expense added ✓');
   }
-  saveData(); closeForm(); render();
+  closeForm(); render();
 }
 
 // ════════════════════════════════
@@ -805,11 +859,16 @@ function confirmDelete(id, desc) {
   document.getElementById('confirm-desc').textContent = `"${desc}"`;
   document.getElementById('overlay').classList.add('show');
 }
-function doDelete() {
+async function doDelete() {
   if (!deleteId) return;
-  expenses = expenses.filter(e => e.id !== deleteId);
+  const id = deleteId;
+  try {
+    await apiDeleteExpense(id);
+  } catch (e) {
+    return alert('Could not delete — check your connection and try again.');
+  }
+  expenses = expenses.filter(e => e.id !== id);
   deleteId = null;
-  saveData();
   document.getElementById('overlay').classList.remove('show');
   showToast('Expense deleted');
   render();
@@ -851,7 +910,7 @@ document.getElementById('btn-yes').addEventListener('click', doDelete);
 document.getElementById('overlay').addEventListener('click', e => { if (e.target.id==='overlay') document.getElementById('overlay').classList.remove('show'); });
 document.getElementById('rate-input').addEventListener('change', () => {
   rate = parseFloat(document.getElementById('rate-input').value) || 0.87;
-  localStorage.setItem(LS_RATE, rate);
+  apiPutRate(rate).catch(() => showToast('Rate not saved — check connection'));
   render();
 });
 
@@ -862,6 +921,11 @@ document.getElementById('rate-input').value = rate;
 buildStaticForm();
 initSplitState(null);
 render();
+
+// Load the shared state, then keep it live for everyone on the trip.
+loadState();
+setInterval(() => { if (!modalOpen()) loadState({ silent: true }); }, 10000);
+window.addEventListener('focus', () => { if (!modalOpen()) loadState({ silent: true }); });
 </script>
 </body>
 </html>

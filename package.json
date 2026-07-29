@@ -1,0 +1,13 @@
+{
+  "name": "yarra-valley-trip",
+  "version": "1.0.0",
+  "private": true,
+  "description": "YOUR HEAD — Yarra Valley trip site + shared expense tracker",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "pg": "^8.13.1"
+  }
+}
