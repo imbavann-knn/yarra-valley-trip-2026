@@ -594,6 +594,35 @@ nav {
   color: var(--burgundy);
 }
 
+.flight-badge {
+  display: inline-block;
+  font-family: var(--font-ui);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  border-radius: 999px;
+  margin-bottom: 14px;
+}
+.flight-badge.changed { background: #fbeaea; color: #b3261e; border: 1px solid #f3c9c6; }
+.flight-badge.updated { background: #e7f5ec; color: #1e7d43; border: 1px solid #bfe3cc; }
+
+.flight-card.superseded { opacity: 0.62; filter: saturate(0.45); }
+
+.flight-card.updated { border-color: #1e7d43; }
+.flight-card.updated::before { background: linear-gradient(90deg, #1e7d43, var(--gold)); }
+
+.flight-note {
+  font-family: var(--font-ui);
+  font-size: 11.5px;
+  line-height: 1.5;
+  color: var(--brown);
+  opacity: 0.8;
+  margin-top: 14px;
+  font-style: italic;
+}
+
 .flight-placeholder {
   background: var(--cream-mid);
   border: 1.5px dashed var(--rose);
@@ -1497,7 +1526,46 @@ footer::before {
         </div>
       </div>
 
-      <div class="flight-card">
+      <!-- Return — UPDATED flight (delayed 1 day by airline) -->
+      <div class="flight-card updated">
+        <span class="flight-badge updated">✓ Updated · Delayed 1 day</span>
+        <div class="flight-direction">
+          <span class="flight-city">MEL</span>
+          <span class="flight-arrow-icon">✈</span>
+          <span class="flight-city">SIN</span>
+        </div>
+        <div class="flight-detail-row">
+          <div class="flight-row">
+            <span class="flight-key">Date</span>
+            <span class="flight-val">Fri 7 Aug 2026</span>
+          </div>
+          <div class="flight-row">
+            <span class="flight-key">Flight</span>
+            <span class="flight-val">JQ8037 · Operated by Qantas (QF37)</span>
+          </div>
+          <div class="flight-row">
+            <span class="flight-key">Departs</span>
+            <span class="flight-val">15:55 · Melbourne (Tullamarine)</span>
+          </div>
+          <div class="flight-row">
+            <span class="flight-key">Arrives</span>
+            <span class="flight-val">22:05 · Singapore (Changi)</span>
+          </div>
+          <div class="flight-row">
+            <span class="flight-key">Duration</span>
+            <span class="flight-val">8 hr 10 min</span>
+          </div>
+          <div class="flight-row">
+            <span class="flight-key">Cabin</span>
+            <span class="flight-val">Economy · Starter Fare</span>
+          </div>
+        </div>
+        <p class="flight-note">Airline moved the return one day later. Now a Qantas-operated codeshare, so the terminal differs from the Jetstar flights — confirm at the airport.</p>
+      </div>
+
+      <!-- Return — ORIGINAL flight (kept for reference / comparison) -->
+      <div class="flight-card superseded">
+        <span class="flight-badge changed">✕ Replaced · Original booking</span>
         <div class="flight-direction">
           <span class="flight-city">MEL</span>
           <span class="flight-arrow-icon">✈</span>
@@ -1529,6 +1597,7 @@ footer::before {
             <span class="flight-val">Economy · Starter Fare</span>
           </div>
         </div>
+        <p class="flight-note">Original return before the airline's change — kept here for comparison.</p>
       </div>
     </div>
 
